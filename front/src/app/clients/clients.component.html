@@ -1,0 +1,60 @@
+<div class="container" >
+    <div class="header">
+        <h5>Данные о клиентах:</h5>
+        <button class="btn btn-success rounded-pill" (click)="showAddNewClientForm()">Добавление нового клиента</button>
+    </div>
+    <div class="enter-data" *ngIf="visibleAddNewClient">
+       <select [(ngModel)]="selectedPerson">
+        <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
+    </select>
+        <label for="date_born" >Дата рождения:
+            <input type="date"  name="date_born" [(ngModel)]='date_born' (value)="date_born">
+        </label>
+        <label for="habitation" >Место проживания:
+            <input type="text"  name="habitation" [(ngModel)]='habitation' (value)="habitation">
+        </label>
+        <label for="pass_id" >Паспортные данные:
+            <input type="text"  name="pass_id" [(ngModel)]='pass_id'  (value)="pass_id">
+        </label>
+        <button class="btn btn-success rounded-pill" (click)="addNewClient()">Добавить</button>
+    </div>
+    <div class="enter-data" *ngIf="visibleUpdateClient">
+        <select [(ngModel)]="selectedPerson">
+            <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
+        </select>
+         <label for="date_born" >Дата рождения:
+             <input type="text"  name="date_born" [(ngModel)]='date_born' (value)="date_born">
+         </label>
+         <label for="habitation" >Место проживания:
+             <input type="text"  name="habitation" [(ngModel)]='habitation' (value)="habitation">
+         </label>
+         <label for="pass_id" >Паспортные данные:
+             <input type="text"  name="pass_id" [(ngModel)]='pass_id'  (value)="pass_id">
+         </label>
+         <button class="btn btn-success rounded-pill" (click)="updateClient()">Изменить</button>
+     </div>
+    <table class="table" >
+        <tr>
+            <th>ID</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Паспорт</th>
+            <th>Место проживания</th>
+            <th>Дата рождения</th>
+            <th>Операции</th>
+        </tr>
+        <tr *ngFor="let item of query; index as i">
+            <td>{{item.id}}</td>
+            <td>{{item.surname}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.patronamic}}</td>
+            <td>{{item.pass_id}}</td>
+            <td>{{item.habitation}}</td>
+            <td>{{item.date_born}}</td>
+            <td><button class="btn btn-warning rounded-pill" (click)="showUpdateClientForm(i)">Изменить</button>
+                <button class="btn btn-danger rounded-pill"  (click)="removeClient(i)">Удалить</button></td>
+        </tr>
+       
+    </table>
+</div>

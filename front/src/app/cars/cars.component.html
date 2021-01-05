@@ -1,0 +1,71 @@
+<div class="container" >
+    <div class="header">
+        <h5>Данные об автомобилях:</h5>
+        <button class="btn btn-success rounded-pill" (click)="addNewCar()">Добавление нового автомобиля</button>
+    </div>
+    <div class="enter-data" *ngIf="visibleAddNewCar">
+        <label for="mark" >Марка авто:
+            <input type="text"  name="mark" [(ngModel)]='mark' (value)="mark">
+        </label>
+        <label for="color" >Цвет:
+            <input type="text"  name="color" [(ngModel)]='color' (value)="color">
+        </label>
+        <label for="gos_number" >Гос. номер:
+            <input type="text"  name="gos_number" [(ngModel)]='gos_number'  (value)="gos_number">
+        </label>
+        <label for="year_production" >Год выпуска:
+            <input type="text"  name="year_production" [(ngModel)]='year_production'  (value)="year_production">
+        </label>
+        <select name="owner_id" id="owner_id" [(ngModel)]='owner_id'>
+            <option value="1">Владелец</option>
+            <option value="2">Доверенность</option>
+        </select>
+        <button class="btn btn-success rounded-pill" (click)="addNewCar()">Добавить</button>
+    </div>
+    <div class="enter-data" *ngIf="visibleUpdateCar">
+        <label for="mark" >Марка авто:
+            <input type="text"  name="mark" [(ngModel)]='mark' (value)="mark">
+        </label>
+        <label for="color" >Цвет:
+            <input type="text"  name="color" [(ngModel)]='color' (value)="color">
+        </label>
+        <label for="gos_number" >Гос. номер:
+            <input type="text"  name="gos_number" [(ngModel)]='gos_number'  (value)="gos_number">
+        </label>
+        <label for="year_production" >Год выпуска:
+            <input type="text"  name="year_production" [(ngModel)]='year_production'  (value)="year_production">
+        </label>
+        <select name="owner_id" id="owner_id" [(ngModel)]='owner_id'>
+            <option value="1">Владелец</option>
+            <option value="2">Доверенность</option>
+        </select>
+        <button class="btn btn-success rounded-pill" (click)="updateCar()">Изменить</button>
+    </div>
+
+   
+    <table class="table" >
+        <tr>
+            <th>ID</th>
+            <th>Марка</th>
+            <th>Цвет</th>
+            <th>Год выпуска</th>
+            <th>Гос. номер</th>
+            <th>Право владения</th>
+            <th>Операции</th>
+        </tr>
+        <tr *ngFor="let item of query; index as i">
+            <td>{{item.id}}</td>
+            <td>{{item.mark}}</td>
+            <td>{{item.color}}</td>
+            <td>{{item.year_production}}</td>
+            <td>{{item.gos_number}}</td>
+            <td>{{item.type}}</td>
+            <td>
+                <button class="btn btn-warning rounded-pill" (click)="showUpdateCar(i)">Изменить</button>
+                <button class="btn btn-danger rounded-pill" (click)="removeCar(i)">Удалить</button>
+            </td>
+        </tr>
+    </table>
+
+
+</div>

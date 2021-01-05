@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="header">
+        <h5>Данные об услугах:</h5>
+        <button class="btn btn-success rounded-pill" (click)="addNewItem()">Добавить новой услуги</button>
+    </div>
+    <div class="enter-data" *ngIf="visibleAddNewPriceList">
+        <label for="title" >Название:
+            <input type="text"  name="title" [(ngModel)]='title' (value)="title">
+        </label>
+        <label for="price" >Стоимость:
+            <input type="text"  name="price" [(ngModel)]='price' (value)="price">
+        </label>
+        <button class="btn btn-success rounded-pill" (click)="addNewItem()">Добавить</button>
+    </div>
+
+    <div class="enter-data" *ngIf="visibleUpdatePriceList">
+        <label for="title" >Название:
+            <input type="text"  name="title" [(ngModel)]='title' (value)="title">
+        </label>
+        <label for="price" >Стоимость:
+            <input type="text"  name="price" [(ngModel)]='price' (value)="price">
+        </label>
+        <button class="btn btn-success rounded-pill" (click)="updateItem()">Изменить</button>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Вид услуги</th>
+            <th>Стоимость руб.</th>
+            <th>Операции</th>
+        </tr>
+        <tr *ngFor="let item of query; index as i">
+            <td>{{item.id}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.price}}</td>
+            <td>
+                <button class="btn btn-warning rounded-pill" (click)="showUpdatePriceList(i)" >Изменить</button>
+                <button class="btn btn-danger rounded-pill"  (click)="removeItem(i)">Удалить</button>
+            </td>
+        </tr>
+    </table>
+</div>

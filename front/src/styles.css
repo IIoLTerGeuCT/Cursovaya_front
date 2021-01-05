@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+table th, td{
+    border: 1px solid grey;
+    text-align: center;
+
+}
+
+button{
+    margin-left: 20px;
+}
+img{
+    max-width: 28px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap');
+
+body{
+    font-size: 12px;
+    font-family: 'Roboto Condensed', sans-serif;
+    /* background-color:#BEBDC3; */
+    /* background-color:lightgray; */
+    background-color: #E0E0E0;
+}
+

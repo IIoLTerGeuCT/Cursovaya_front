@@ -1,0 +1,60 @@
+<div class="container" >
+    <div class="header">
+        <h5>Данные о сотрудниках:</h5>
+        <button class="btn btn-success rounded-pill" (click)="showAddNewEmployeeForm()">Добавление нового сотрудника</button>
+    </div>
+    <div class="enter-data" *ngIf="visibleAddNewEmployee">
+        <select [(ngModel)]="selectedPersonForEmploee">
+         <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
+     </select>
+         <label for="specialization" >Специализация:
+             <input type="text"  name="specialization" [(ngModel)]='specialization' (value)="specialization">
+         </label>
+         <label for="rank" >Разряд:
+             <input type="text"  name="rank" [(ngModel)]='rank' (value)="rank">
+         </label>
+         <label for="expirience" >Опыт работы (Стаж):
+             <input type="text"  name="expirience" [(ngModel)]='expirience'  (value)="expirience">
+         </label>
+         <button class="btn btn-success rounded-pill" (click)="addNewEmployee()">Добавить</button>
+     </div>
+     <div class="enter-data" *ngIf="visibleUpdateEmployee">
+         <select [(ngModel)]="selectedPersonForEmploee">
+             <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
+         </select>
+         <label for="specialization" >Специализация:
+            <input type="text"  name="specialization" [(ngModel)]='specialization' (value)="specialization">
+        </label>
+        <label for="rank" >Разряд:
+            <input type="text"  name="rank" [(ngModel)]='rank' (value)="rank">
+        </label>
+        <label for="expirience" >Опыт работы (Стаж):
+            <input type="text"  name="expirience" [(ngModel)]='expirience'  (value)="expirience">
+        </label>
+          <button class="btn btn-success rounded-pill" (click)="updateEmployee()">Изменить</button>
+      </div>
+    <table class="table" >
+        <tr>
+            <th>ID</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Стаж</th>
+            <th>Разряд</th>
+            <th>Специальность</th>
+            <th>Операции</th>
+        </tr>
+        <tr *ngFor="let item of query; index as i">
+            <td>{{item.id}}</td>
+            <td>{{item.surname}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.patronamic}}</td>
+            <td>{{item.expirience}}</td>
+            <td>{{item.rank}}</td>
+            <td>{{item.specialization}}</td>
+            <td><button class="btn btn-warning rounded-pill" (click)="showUpdateEmployeeForm(i)">Изменить</button>
+                <button class="btn btn-danger rounded-pill"  (click)="removeEmployee(i)">Удалить</button></td>
+        </tr>
+       
+    </table>
+</div>

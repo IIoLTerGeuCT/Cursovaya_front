@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="header">
+        <h5>Данные о предоставленных услугах:</h5>
+        <button class="btn btn-success rounded-pill" (click)="showAddNewServiceForm()">Создать заявку</button>
+    </div>
+    <div class="enter-data" *ngIf="visibleAddNewService">
+        <select [(ngModel)]="selectedCarModel">
+            <optgroup label = "Данные об авто:" ></optgroup>
+         <option *ngFor="let c of cars" [value]="c.id">{{c.id}}:  {{c.mark}} | {{c.gos_number}} | {{c.color}}</option>
+        </select>
+         <select [(ngModel)]="selectedClientModel">
+            <optgroup label = "Данные о клиенте:"></optgroup>
+            <option *ngFor="let c of clients" [value]="c.id">{{c.id}}: {{c.surname}} {{c.name[0]}}. {{c.patronamic[0]}}. {{c.habitation}}
+            </option>
+        </select>
+        <select [(ngModel)]="selectedEmployeeModel">
+            <optgroup label = "Данные о сотруднике:"></optgroup>
+            <option *ngFor="let e of employees" [value]="e.id">{{e.id}}: {{e.surname}} {{e.name[0]}}.{{e.patronamic[0]}}. {{e.specialization}}</option>
+        </select>
+         <label for="date_start_repairs" >Дата начала ремонта:
+             <input type="date"  name="date_start_repairs" [(ngModel)]='date_start_repairs' (value)="date_start_repairs">
+         </label>
+         <label for="date_finish_repairs" >Дата окончания ремонта:
+             <input type="date"  name="date_finish_repairs" [(ngModel)]='date_finish_repairs' (value)="date_finish_repairs">
+         </label>
+        <select [(ngModel)]="selectedPriceListModel" multiple size="10">
+            <option *ngFor="let p of price_lists" [value]="p.id">{{p.id}}: {{p.type}}</option>
+        </select>
+
+         <button class="btn btn-success rounded-pill" (click)="addNewService()">Добавить</button>
+     </div>
+
+     <!-- <div class="enter-data" *ngIf="visibleUpdateService">
+        <select [(ngModel)]="selectedCarModel">
+         <option *ngFor="let c of cars" [value]="c.id">{{c.Mark}} | {{c.gos_number}} | {{c.color}}</option>
+        </select>
+        <select [(ngModel)]="selectedClientModel">
+            <option *ngFor="let c of clients" [value]="c.id">{{c.surname}} {{c.name[0]}}.{{c.patronamic[0].}}</option>
+        </select>
+        <select [(ngModel)]="selectedEmployeeModel">
+            <option *ngFor="let e of employees" [value]="e.id">{{e.surname}} {{e.name[0]}}.{{e.patronamic[0].}} | {{e.specialization}}</option>
+        </select>
+
+
+         <label for="date_start_repairs" >Дата начала ремонта:
+             <input type="text"  name="date_start_repairs" [(ngModel)]='date_start_repairs' (value)="date_start_repairs">
+         </label>
+         <label for="date_finish_repairs" >Дата окончания ремонта:
+             <input type="text"  name="date_finish_repairs" [(ngModel)]='date_finish_repairs' (value)="date_finish_repairs">
+         </label>
+         <label for="price_list_id" >Услуги:
+             <input type="text"  name="price_list_id" [(ngModel)]='price_list_id'  (value)="price_list_id">
+         </label>
+         <button class="btn btn-success rounded-pill" (click)="updateService()">Изменить</button>
+     </div> -->
+ 
+     
+        <div  class="card " *ngFor="let s of query">
+            <div class="card-head" (click)="cardToggle($event)">
+                голова
+            </div>
+            <div class="card-body">
+                тело
+            </div>
+        </div>
+
+   
+
+    <!-- <table class="table">
+        <tr>
+            <th>id</th>
+            <th>Марка</th>
+            <th>Гос. номер</th>
+            <th>Право владения</th>
+            <th>Данные о клиента</th>
+            <th>Данные о сотруднике</th>
+            <th>Дата начала ремонта</th>
+            <th>Дата окончания ремонта</th>
+            <th>Список предоставленных услуг:</th>
+            <th>Операции</th>
+        </tr>
+        <tr *ngFor="let item of query; index as i">
+            <td>{{item.id}}</td>
+            <td>{{item.mark}}</td>
+            <td>{{item.gos_number}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.clientSurname}} {{item.clientName[0]}}. {{item.clientPatronamic[0]}}.</td>
+            <td>{{item.EmployeeSurname}} {{item.EmployeeName[0]}}. {{item.EmployeePatronamic[0]}}.</td>
+            <td>{{item.start | date:"medium"}}</td>
+            <td>{{item.finish | date:"medium"}}</td>
+            <td>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Услуга</th>
+                            <th scope="col">Цена руб.</th>
+                        </tr>
+                    </thead>
+                    
+                  <tbody>
+                    <tr *ngFor="let pl of showPriceListInServiceTable(i)">
+                        <td >{{pl.id}}</td>
+                        <td >{{pl.type}}</td>
+                        <td >{{pl.price}}</td>
+                    </tr>
+                  </tbody>
+                   
+                </table>
+            </td>
+            <td class="df-btn"><button class="btn btn-warning rounded-pill" (click)="showUpdateServiceForm(i)">Изменить</button>
+                <button class="btn btn-danger rounded-pill"  (click)="removeService(i)">Удалить</button>
+            </td>
+        </tr>
+    </table> -->
+</div>
