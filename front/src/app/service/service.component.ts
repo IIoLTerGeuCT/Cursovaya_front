@@ -21,6 +21,7 @@ export class ServiceComponent implements OnInit {
   selectedIndexCar:number = 0
   selectedIndexClient:number = 0
   selectedIndexEmployee:number = 0
+  selectedIndex:number = 0
 
   // Свойства для создания сущности
   date_start_repairs:Date = new Date
@@ -126,33 +127,111 @@ restoreAddData(){
 
 
 
-showUpdateServiceForm(index:number){}
-// updateService(){}
-removeService(index:number){}
+async showUpdateServiceForm(index:number){
+  this.visibleAddNewService = false
+  this.visibleUpdateService = true
+
+  //Обнуление данных, если останутся значения в памяти
+  // this.date_start_repairs = new Date
+  // this.date_finish_repairs = new Date
+  this.car_id = 0
+  this.client_id = 0
+  this.employee_id = 0
+  this.price_list_id = '3, 2, 6, 16'
+
+  // Загружаем данные в обьекты
+  this.ngOnInit()
+
+  this.selectedIndex = index
+  
+ 
+  // Перезаписываем данные для отображения в разметку
+  this.date_start_repairs = this.query[index].start
+  this.date_finish_repairs = this.query[index].finish
+  this.price_list_id = this.query[index].price_list_id
+
+
+  
+  
+
+}
+updateService(){
+  // Перезаписываем данные для отображения в разметку
+ 
+  this.car_id = this.selectedCarModel
+  this.client_id = this.selectedClientModel
+  this.employee_id = this.selectedEmployeeModel
+  this.price_list_id = JSON.stringify(this.selectedPriceListModel)
+ 
+ 
+ 
+
+  this.query[this.selectedIndex].start = this.date_start_repairs
+  this.query[this.selectedIndex].finish = this.date_finish_repairs
+  this.query[this.selectedIndex].car_id = this.car_id
+  this.query[this.selectedIndex].client_id = this.client_id
+  this.query[this.selectedIndex].employee_id = this.employee_id
+  this.query[this.selectedIndex].price_list_id = this.price_list_id
+
+  
+  
+  
+  let obj = {
+    id:this.query[this.selectedIndex].id,
+    date_start_repairs: this.query[this.selectedIndex].start,
+    date_finish_repairs: this.query[this.selectedIndex].finish,
+    car_id: this.car_id,
+    client_id: this.client_id,
+    employee_id:this.employee_id,
+    state:this.query[this.selectedIndex].state,
+    price_list_id: this.query[this.selectedIndex].price_list_id
+  }
+
+  // Формирование и отправка данных на сервер
+  const myHeader = new HttpHeaders().set('Content-Type','application/json')
+  this.http.post(this.urlConnect, obj, {headers:myHeader})
+  .subscribe(res => console.log(res))
+ this.reloadPage()
+
+}
+removeService(index:number){
+  let indexRemove = this.query[index].id
+
+  let url = `http://localhost:3001/api/services/?id=${indexRemove}`
+  // Отправляем запрос на удаление
+  const myHeader = new HttpHeaders().set('Content-Type','application/json')
+  this.http.delete(url, {headers:myHeader})
+  .subscribe(()=> { console.log('Success');
+  })
+  // Обновляем страницу
+  this.reloadPage()
+
+}
 
 //#region  Сортировки
-async sortByMarkCar(){
+async sortById(){
   await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${1}`).subscribe((response) => { this.query = response })
-}
-async sortBySurnameClient(){
+} 
+async sortByMarkCar(){
   await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${2}`).subscribe((response) => { this.query = response })
 }
-async sortBySurnameEmployee(){
+async sortBySurnameClient(){
   await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${3}`).subscribe((response) => { this.query = response })
 }
-async sortByStartRepairs(){
+async sortBySurnameEmployee(){
   await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${4}`).subscribe((response) => { this.query = response })
+}
+async sortByStartRepairs(){
+  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${5}`).subscribe((response) => { this.query = response })
 }
 
 async sortByFinishRepairs(){
-  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${5}`).subscribe((response) => { this.query = response })
+  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${6}`).subscribe((response) => { this.query = response })
 }
 //#endregion
 
 cardToggle(event: MouseEvent){
-
   (event.target as HTMLElement).parentElement?.classList.toggle("card--open")
-  
 }
 }
 

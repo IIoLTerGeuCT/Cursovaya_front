@@ -16,9 +16,10 @@ export class PriceListComponent implements OnInit {
   visibleUpdatePriceList:boolean = false
   selectedIndex:number = 0
   
-  title:string = ''
+  type:string = ''
   price:number = 0
 
+  price_lists:PriceList[] = []
  
   constructor(private http: HttpClient){}
 
@@ -36,7 +37,7 @@ addNewItem(){
   this.visibleAddNewPriceList = true
   this.visibleUpdatePriceList = false
 
-  let priceItem = new PriceList(this.title, this.price)
+  let priceItem = new PriceList(this.type, this.price)
   if(priceItem.type !== ''|| priceItem.price !== 0){
 
     const myHeader = new HttpHeaders().set('Content-Type','application/json')
@@ -45,22 +46,24 @@ addNewItem(){
     this.reloadPage()
   }
 }
-showUpdatePriceList(index:number){
+async showUpdatePriceList(index:number){
   this.visibleAddNewPriceList = false
   this.visibleUpdatePriceList = true
 
-  this.title = ''
+  this.type = ''
   this.price = 0
 
+ 
   this.selectedIndex = index
+ 
   
-  this.title = this.query[index].title
+  this.type = this.query[index].type
   this.price = this.query[index].price
-
+  
 }
 updateItem(){
   
-  this.query[this.selectedIndex].title = this.title
+  this.query[this.selectedIndex].type = this.type
   this.query[this.selectedIndex].price = this.price
   
   const myHeader = new HttpHeaders().set('Content-Type','application/json')

@@ -4,8 +4,8 @@
         <button class="btn btn-success rounded-pill" (click)="addNewItem()">Добавить новой услуги</button>
     </div>
     <div class="enter-data" *ngIf="visibleAddNewPriceList">
-        <label for="title" >Название:
-            <input type="text"  name="title" [(ngModel)]='title' (value)="title">
+        <label for="type" >Название:
+            <input type="text"  name="type" [(ngModel)]='type' (value)="type">
         </label>
         <label for="price" >Стоимость:
             <input type="text"  name="price" [(ngModel)]='price' (value)="price">
@@ -14,8 +14,8 @@
     </div>
 
     <div class="enter-data" *ngIf="visibleUpdatePriceList">
-        <label for="title" >Название:
-            <input type="text"  name="title" [(ngModel)]='title' (value)="title">
+        <label for="type" >Название:
+            <input type="text"  name="type" [(ngModel)]='type' (value)="type">
         </label>
         <label for="price" >Стоимость:
             <input type="text"  name="price" [(ngModel)]='price' (value)="price">
