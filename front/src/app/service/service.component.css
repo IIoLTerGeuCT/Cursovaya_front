@@ -6,31 +6,57 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 20px;
 }
 .enter-data select{
     min-height: 25px;
     padding: 2px;
-    min-width: 500px;
+    min-width: 472px;
 }
+.inputDateStart{
+    margin-top: 10px;
+    margin-left: 24px;
+} 
+.inputDateFinish{
+    margin-left: 5px;
+} 
+
+.myDropMenuForSort{
+    display: flex;
+    margin-left: 430px;
+}
+
+
 .df-btn{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
 }
-
 
 .df-btn btn{
-   min-width: 150px;
-}
+    min-width: 150px;
+ }
+ 
 
+.btnAddRestore{
+    margin: 5px;
+    margin-left: 200px;
+}
+.addForm{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .card{
     border-radius: 6px;
     margin-bottom: 12px;
 }
 .card--open .card-head{
-    background-color: #f4f4f4;
+    background-color: lightgray;
+    border: 1px dashed green;
 }
 .card--open .card-body{
     display: block;
@@ -42,4 +68,10 @@
     padding: 20px;
     display: none;
 }
-
+/* Для выравнивания select с label */
+.df{
+    display: flex;
+}
+.df label{
+    min-width: 150px;
+}

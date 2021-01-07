@@ -28,21 +28,26 @@
         </label>
         <button class="btn btn-success rounded-pill" (click)="updatePerson()">Изменить</button>
     </div>
-    <table class="table" >
-        <tr>
-            <th>ID</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Отчество</th>
-            <th>Операции</th>
-        </tr>
-        <tr *ngFor="let item of query; index as i">
-            <td>{{item.id}}</td>
-            <td>{{item.surname}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.patronamic}}</td>
-            <td><button class="btn btn-warning rounded-pill" (click)="showUpdatePersonForm(i)">Изменить</button>
-                <button class="btn btn-danger rounded-pill"  (click)="removePerson(i)">Удалить</button></td>
-        </tr>
-    </table>
+    <div>   
+        <table class="table" >
+            <tr>
+                <th>ID</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Операции</th>
+            </tr>
+            <tr *ngFor="let item of query; index as i">
+                <td>{{item.id}}</td>
+                <td>{{item.surname}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.patronamic}}</td>
+                <td>
+                    <button class="btn btn-warning rounded-pill" (click)="showUpdatePersonForm(i)">Изменить</button>
+                    <button class="btn btn-danger rounded-pill"  (click)="removePerson(i)">Удалить</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
 </div>

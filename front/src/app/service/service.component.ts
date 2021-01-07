@@ -119,15 +119,35 @@ showPriceListInServiceTable(indexService:number){
 // Выводим на страницу
  return curentPlforItemServer;
 }
+restoreAddData(){
+  this.visibleAddNewService = false
+  this.visibleUpdateService = false
+}
 
 
-// updateService(){}
 
 showUpdateServiceForm(index:number){}
+// updateService(){}
 removeService(index:number){}
 
+//#region  Сортировки
+async sortByMarkCar(){
+  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${1}`).subscribe((response) => { this.query = response })
+}
+async sortBySurnameClient(){
+  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${2}`).subscribe((response) => { this.query = response })
+}
+async sortBySurnameEmployee(){
+  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${3}`).subscribe((response) => { this.query = response })
+}
+async sortByStartRepairs(){
+  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${4}`).subscribe((response) => { this.query = response })
+}
 
-
+async sortByFinishRepairs(){
+  await this.http.get(`http://localhost:3001/api/sortServices/?myKey=${5}`).subscribe((response) => { this.query = response })
+}
+//#endregion
 
 cardToggle(event: MouseEvent){
 

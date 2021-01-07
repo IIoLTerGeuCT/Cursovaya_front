@@ -14,6 +14,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CarsComponent } from './cars/cars.component';
 import { ServiceComponent } from './service/service.component';
+import { SortServiceComponent } from './sort-service/sort-service.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ServiceComponent } from './service/service.component';
     EmployeesComponent,
     ClientsComponent,
     CarsComponent,
-    ServiceComponent
+    ServiceComponent,
+    SortServiceComponent
   ],
   imports: [
     BrowserModule,
