@@ -4,9 +4,17 @@
         <button class="btn btn-success rounded-pill" (click)="showAddNewClientForm()">Добавление нового клиента</button>
     </div>
     <div class="enter-data" *ngIf="visibleAddNewClient">
-       <select [(ngModel)]="selectedPerson">
-        <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
-    </select>
+
+        <label for="surname" >Фамилия:
+            <input type="text"  name="surname" [(ngModel)]='surname' (value)="surname">
+        </label>
+        <label for="name" >Имя:
+            <input type="text"  name="name" [(ngModel)]='name' (value)="name">
+        </label>
+        <label for="patronamic" >Отчество:
+            <input type="text"  name="patronamic" [(ngModel)]='patronamic' (value)="patronamic">
+        </label>
+
         <label for="date_born" >Дата рождения:
             <input type="date"  name="date_born" [(ngModel)]='date_born' (value)="date_born">
         </label>
@@ -19,9 +27,15 @@
         <button class="btn btn-success rounded-pill" (click)="addNewClient()">Добавить</button>
     </div>
     <div class="enter-data" *ngIf="visibleUpdateClient">
-        <select [(ngModel)]="selectedPerson">
-            <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
-        </select>
+        <label for="surname" >Фамилия:
+            <input type="text"  name="surname" [(ngModel)]='surname' (value)="surname">
+        </label>
+        <label for="name" >Имя:
+            <input type="text"  name="name" [(ngModel)]='name' (value)="name">
+        </label>
+        <label for="patronamic" >Отчество:
+            <input type="text"  name="patronamic" [(ngModel)]='patronamic' (value)="patronamic">
+        </label>
          <label for="date_born" >Дата рождения:
              <input type="text"  name="date_born" [(ngModel)]='date_born' (value)="date_born">
          </label>

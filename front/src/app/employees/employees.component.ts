@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders }   from '@angular/common/http';
-import {Employee, Person} from '../app.component'
+import {Employee} from '../app.component'
 
 @Component({
   selector: 'app-employees',
@@ -18,15 +18,16 @@ export class EmployeesComponent implements OnInit {
   
   selectedIndex:number = 0
  
+  surname:string = ''
+  name:string = ''
+  patronamic:string = ''
   expirience:number = 0
   rank:number = 0
   specialization: string = ''
   person_id:number = 0
   state:number = 1
   
-   // Коллекция персон для select options
-   persons:Person[] = []
-   selectedPersonForEmploee:any // Id Model Person  выбранного в select
+
   
 
   constructor(private http: HttpClient){}
@@ -40,21 +41,19 @@ reloadPage(){
   this.ngOnInit()
 }
 
-async showAddNewEmployeeForm(){
+showAddNewEmployeeForm(){
   this.visibleAddNewEmployee = true
   this.visibleUpdateEmployee = false
 
-  // Забираем всех персон из таблицы, для прогрузки в Select
-  await this.http.get('http://localhost:3001/api/persons').subscribe((res) => {  this.persons = <Array<Person>>res  })
+
 }
 async addNewEmployee(){
   this.visibleAddNewEmployee = true
   this.visibleUpdateEmployee = false
 
-  // Получим выбранного персоны id
-  this.person_id =  (this.persons.filter(item => item.id === Number.parseInt(this.selectedPersonForEmploee)))[0].id
+
   // Формируем нового сотрудника
-  let newEmployee = new Employee(this.expirience,this.person_id, this.rank,  this.specialization, this.state)
+  let newEmployee = new Employee(this.surname, this.name, this.patronamic,this.expirience,this.person_id, this.rank,  this.specialization, this.state)
   
   // Проверяем на наличие все данных, и отправляем запрос
   if(this.expirience !== null || this.rank !== null || this.expirience !== '' || this.person_id !==null ){
@@ -67,19 +66,19 @@ async addNewEmployee(){
 
 }
 
-async showUpdateEmployeeForm(index:number){
+showUpdateEmployeeForm(index:number){
   this.visibleAddNewEmployee = false
   this.visibleUpdateEmployee = true
 
   // Обнуление данных
+  this.surname = ''
+  this.name = ''
+  this.patronamic = ''
   this.expirience = 0
   this.rank = 0
   this.state = 1
-  this.person_id = 0
   this.specialization = ''
 
-  // Забираем всех персон из таблицы, для прогрузки в Select
-  await this.http.get('http://localhost:3001/api/persons').subscribe((res) => {  this.persons = <Array<Person>>res  })
 
   // Получаем индекс выбранного элемента
   this.selectedIndex = index
@@ -88,21 +87,24 @@ async showUpdateEmployeeForm(index:number){
   this.expirience = this.query[index].expirience
   this.rank = this.query[index].rank
   this.state = this.query[index].state
-  this.person_id = this.query[index].person_id
+  this.surname = this.query[index].surname
+  this.name = this.query[index].name
+  this.patronamic = this.query[index].patronamic
   this.specialization = this.query[index].specialization
 
 }
 
 updateEmployee(){
 
-  // Получим выбранного персоны id
-  this.person_id =  (this.persons.filter(item => item.id === Number.parseInt(this.selectedPersonForEmploee)))[0].id
+
 
  // Переписываем данные из разметки в основную коллекцию
  this.query[this.selectedIndex].expirience = this.expirience
  this.query[this.selectedIndex].rank = this.rank
  this.query[this.selectedIndex].state = this.state
- this.query[this.selectedIndex].person_id = this.person_id
+ this.query[this.selectedIndex].surname = this.surname
+ this.query[this.selectedIndex].name = this.name
+ this.query[this.selectedIndex].patronamic = this.patronamic
  this.query[this.selectedIndex].specialization = this.specialization
 
 

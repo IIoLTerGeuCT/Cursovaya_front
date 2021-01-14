@@ -12,18 +12,7 @@ export class AppComponent {
  
   
 }
-export class Person{
-  id:number = 0
-  surname: string = ''
-  name: string = ''
-  patronamic: string = ''
 
-  constructor(surname:string, name:string, patronamic:string){
-    this.surname = surname,
-    this.name = name,
-    this.patronamic = patronamic
-  }
-}
 export class PriceList{
   id: number = 0
   type:string = ''
@@ -63,29 +52,40 @@ export class Owner{
 
 export class Client{
     id:number = 0
+    surname:string = ''
+    name:string = ''
+    patronamic:string = ''
     date_born:Date
     habitation:string = ''
     pass_id:string = ''
-    person_id:number
     state:number = 1
-    constructor(date_born:Date, habitation:string, pass_id:string,person_id:number,state:number){
+    constructor(date_born:Date, habitation:string, pass_id:string, 
+                surname:string,name:string, patronamic:string, state:number){
       this.date_born = date_born,
       this.habitation = habitation,
       this.pass_id = pass_id,
-      this.person_id = person_id,
+      this.surname = surname,
+      this.name = name,
+      this.patronamic = patronamic,
       this.state = state
     }
 } // client
 export class Employee{
   id:number = 0
   expirience:number = 0
-  person_id:number = 0
+  surname:string = ''
+  name:string = ''
+  patronamic:string = ''
   rank:number = 0
   specialization:string = ''
   state:number = 1
-  constructor(expirience:number,person_id:number, rank:number,specialization:string,state:number){
+  constructor(surname:string,name:string, patronamic:string, 
+              expirience:number,person_id:number, rank:number,
+              specialization:string,state:number){
+    this.surname = surname,
+    this.name = name,
+    this.patronamic = patronamic,
     this.expirience = expirience,
-    this.person_id = person_id,
     this.rank = rank,
     this.specialization = specialization,
     this.state = state

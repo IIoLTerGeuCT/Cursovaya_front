@@ -4,9 +4,15 @@
         <button class="btn btn-success rounded-pill" (click)="showAddNewEmployeeForm()">Добавление нового сотрудника</button>
     </div>
     <div class="enter-data" *ngIf="visibleAddNewEmployee">
-        <select [(ngModel)]="selectedPersonForEmploee">
-         <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
-     </select>
+        <label for="surname" >Фамилия:
+            <input type="text"  name="surname" [(ngModel)]='surname' (value)="surname">
+        </label>
+        <label for="name" >Имя:
+            <input type="text"  name="name" [(ngModel)]='name' (value)="name">
+        </label>
+        <label for="patronamic" >Отчество:
+            <input type="text"  name="patronamic" [(ngModel)]='patronamic' (value)="patronamic">
+        </label>
          <label for="specialization" >Специализация:
              <input type="text"  name="specialization" [(ngModel)]='specialization' (value)="specialization">
          </label>
@@ -19,9 +25,15 @@
          <button class="btn btn-success rounded-pill" (click)="addNewEmployee()">Добавить</button>
      </div>
      <div class="enter-data" *ngIf="visibleUpdateEmployee">
-         <select [(ngModel)]="selectedPersonForEmploee">
-             <option *ngFor="let p of persons" [value]="p.id">{{p.surname}} {{p.name[0]}}.{{p.patronamic[0]}}.</option>
-         </select>
+        <label for="surname" >Фамилия:
+            <input type="text"  name="surname" [(ngModel)]='surname' (value)="surname">
+        </label>
+        <label for="name" >Имя:
+            <input type="text"  name="name" [(ngModel)]='name' (value)="name">
+        </label>
+        <label for="patronamic" >Отчество:
+            <input type="text"  name="patronamic" [(ngModel)]='patronamic' (value)="patronamic">
+        </label>
          <label for="specialization" >Специализация:
             <input type="text"  name="specialization" [(ngModel)]='specialization' (value)="specialization">
         </label>

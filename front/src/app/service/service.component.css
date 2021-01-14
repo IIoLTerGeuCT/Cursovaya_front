@@ -1,7 +1,10 @@
 .header{
+    padding: 4px; 
     display: flex;
-    padding: 4px;
+
+    
 }
+
 .enter-data{
     display: flex;
     flex-direction: column;

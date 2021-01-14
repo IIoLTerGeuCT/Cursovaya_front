@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders }   from '@angular/common/http';
-import {Employee, Person, Client, PriceList , Car, Service} from '../app.component'
+import {Employee, Client, PriceList , Car, Service} from '../app.component'
 
 
 @Component({
@@ -150,10 +150,6 @@ async showUpdateServiceForm(index:number){
   this.date_finish_repairs = this.query[index].finish
   this.price_list_id = this.query[index].price_list_id
 
-
-  
-  
-
 }
 updateService(){
   // Перезаписываем данные для отображения в разметку
@@ -162,9 +158,7 @@ updateService(){
   this.client_id = this.selectedClientModel
   this.employee_id = this.selectedEmployeeModel
   this.price_list_id = JSON.stringify(this.selectedPriceListModel)
- 
- 
- 
+
 
   this.query[this.selectedIndex].start = this.date_start_repairs
   this.query[this.selectedIndex].finish = this.date_finish_repairs
@@ -172,9 +166,9 @@ updateService(){
   this.query[this.selectedIndex].client_id = this.client_id
   this.query[this.selectedIndex].employee_id = this.employee_id
   this.query[this.selectedIndex].price_list_id = this.price_list_id
+  this.query[this.selectedIndex].state = this.state
 
-  
-  
+
   
   let obj = {
     id:this.query[this.selectedIndex].id,
@@ -186,6 +180,8 @@ updateService(){
     state:this.query[this.selectedIndex].state,
     price_list_id: this.query[this.selectedIndex].price_list_id
   }
+console.log(obj);
+
 
   // Формирование и отправка данных на сервер
   const myHeader = new HttpHeaders().set('Content-Type','application/json')
