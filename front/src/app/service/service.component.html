@@ -2,7 +2,7 @@
     <div class="header">
         <h5>Данные о предоставленных услугах:</h5>
         <button class="btn btn-success rounded-pill" (click)="showAddNewServiceForm()">Создать заявку</button>
-        <div class="dropdown myDropMenuForSort">
+        <div class="dropdown ">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Сортировка:
             </button>
@@ -14,8 +14,17 @@
               <button class="dropdown-item" (click)="sortByStartRepairs()">По дате начала ремонта</button>
               <button class="dropdown-item" (click)="sortByFinishRepairs()">По дате окончания ремонта</button>
             </div>
-          </div>
-
+        </div>
+        <div class="dropdown ">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Актуальность:
+            </button>
+            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+              <button class="dropdown-item btn btn-warning" (click)="showStateCurrent()">В работе</button>
+              <button class="dropdown-item btn btn-success" (click)="showStateDone()">Выполнены</button>
+              <button class="dropdown-item btn btn-danger" (click)="showStateArchive()">Архив</button>
+            </div>
+        </div>
     </div>
     <div class="addForm">
         <div class="enter-data" *ngIf="visibleAddNewService">
@@ -132,8 +141,8 @@
                     <td>{{item.start | date:"medium"}}</td>
                     <td>{{item.finish | date:"medium"}}</td>
                     <td class="df-btn">
-                        <button class="btn btn-warning rounded-pill" (click)="showUpdateServiceForm(i)">Изменить</button>
-                        <button class="btn btn-danger rounded-pill"  (click)="removeService(i)">Удалить</button>
+                        <button id="btnChangeId" class="btn btn-warning rounded-pill " (click)="showUpdateServiceForm(i)">Изменить</button>
+                        <button id="btnRemoveId" class="btn btn-danger rounded-pill "  (click)="removeService(i)">Удалить</button>
                     </td>
                 </tr> 
             </table>

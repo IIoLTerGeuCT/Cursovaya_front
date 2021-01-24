@@ -1,8 +1,9 @@
 .header{
     padding: 4px; 
-    display: flex;
 
-    
+    /* display: flex; */
+    display: flex;
+    justify-content: space-between;
 }
 
 .enter-data{
@@ -24,9 +25,9 @@
     margin-left: 5px;
 } 
 
-.myDropMenuForSort{
-    display: flex;
-    margin-left: 430px;
+
+.btn-secondary{
+    background-color: green;
 }
 
 
@@ -77,4 +78,10 @@
 }
 .df label{
     min-width: 150px;
+}
+
+.btnDisable{
+    background-color: lightgray;
+    color: red;
+    visibility: hidden;
 }

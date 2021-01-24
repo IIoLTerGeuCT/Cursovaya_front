@@ -49,7 +49,7 @@ export class ServiceComponent implements OnInit {
   constructor(private http: HttpClient){}
 
 async ngOnInit(){
- await this.http.get('http://localhost:3001/api/services').subscribe((response) => { this.query = response })
+ await this.http.get('http://localhost:3001/api/services?state=1').subscribe((response) => { this.query = response })
 
  // Забираем все авто из таблицы, для прогрузки в Select
  await this.http.get('http://localhost:3001/api/cars').subscribe((res) => {  this.cars = <Array<Car>>res  })
@@ -180,7 +180,6 @@ updateService(){
     state:this.query[this.selectedIndex].state,
     price_list_id: this.query[this.selectedIndex].price_list_id
   }
-console.log(obj);
 
 
   // Формирование и отправка данных на сервер
@@ -203,6 +202,26 @@ removeService(index:number){
   this.reloadPage()
 
 }
+//#region State 
+async showStateCurrent(){
+  await this.http.get('http://localhost:3001/api/services?state=1').subscribe((response) => { this.query = response })
+}
+async showStateDone(){
+  let btnChange = <HTMLElement>document.getElementById("btnChangeId")
+  
+  btnChange.className += ' btnDisable'
+  console.log(btnChange);
+  
+
+  await this.http.get('http://localhost:3001/api/services?state=2').subscribe((response) => { this.query = response })
+  
+}
+async showStateArchive(){
+  await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
+}
+
+
+//#endregion
 
 //#region  Сортировки
 async sortById(){
@@ -229,5 +248,5 @@ async sortByFinishRepairs(){
 cardToggle(event: MouseEvent){
   (event.target as HTMLElement).parentElement?.classList.toggle("card--open")
 }
-}
+} // ServiceComponent
 
