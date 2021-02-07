@@ -217,6 +217,9 @@ async showStateDone(){
   
 }
 async showStateArchive(){
+//  let item  = angular.element(document.querySelector(".btn btn-danger rounded-pill"))
+//  console.log(item);
+ 
   await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
 }
 
