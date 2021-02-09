@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders }   from '@angular/common/http';
 import {Employee, Client, PriceList , Car, Service} from '../app.component'
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Component({
@@ -153,7 +154,6 @@ async showUpdateServiceForm(index:number){
 }
 updateService(){
   // Перезаписываем данные для отображения в разметку
- 
   this.car_id = this.selectedCarModel
   this.client_id = this.selectedClientModel
   this.employee_id = this.selectedEmployeeModel
@@ -180,13 +180,13 @@ updateService(){
     state:this.query[this.selectedIndex].state,
     price_list_id: this.query[this.selectedIndex].price_list_id
   }
+  let id = obj.id
 
-
-  // Формирование и отправка данных на сервер
+  //Формирование и отправка данных на сервер
   const myHeader = new HttpHeaders().set('Content-Type','application/json')
-  this.http.post(this.urlConnect, obj, {headers:myHeader})
+  this.http.post(`http://localhost:3001/api/services/?id=${id}`, obj, {headers:myHeader})
   .subscribe(res => console.log(res))
- this.reloadPage()
+ //this.reloadPage()
 
 }
 removeService(index:number){
@@ -202,24 +202,70 @@ removeService(index:number){
   this.reloadPage()
 
 }
+// Закрытие заявки
+finishRequest(index:number){
+  // Получим индекс заявки которую необходимо завершить
+   let indexFinish = this.query[index].id
+
+  let url = `http://localhost:3001/api/services`
+  
+  let body = {"id":indexFinish, "state":2};
+
+  // Отправляем запрос на изменение состояния заявки
+  const myHeader = new HttpHeaders().set('Content-Type','application/json')
+  this.http.post(url, body, {headers:myHeader})
+  .subscribe(()=> { console.log('Success');
+  })
+  // Обновляем страницу
+  this.reloadPage()
+}
+
+
 //#region State 
 async showStateCurrent(){
+// 149x37
+
+  let context = <HTMLButtonElement>document.querySelector('#relevance')
+  context.style.background = '#FFCD39'
+  context.style.color = '#000'
+  context.style.height = '37px'
+  context.style.width = '149px'
+  context.textContent = 'В работе'
+  
   await this.http.get('http://localhost:3001/api/services?state=1').subscribe((response) => { this.query = response })
 }
 async showStateDone(){
-  let btnChange = <HTMLElement>document.getElementById("btnChangeId")
-  
-  btnChange.className += ' btnDisable'
-  console.log(btnChange);
-  
+  // Поменяем заголовок выбранного блока и настройка для понимая что было выбрано
+  let context = <HTMLButtonElement>document.querySelector("#relevance")
+  context.style.background = 'green'
+  context.style.color = '#fff'
+  context.style.height = '37px'
+  context.style.width = '149px'
+  context.textContent = 'Выполненные'
 
   await this.http.get('http://localhost:3001/api/services?state=2').subscribe((response) => { this.query = response })
   
 }
 async showStateArchive(){
-//  let item  = angular.element(document.querySelector(".btn btn-danger rounded-pill"))
-//  console.log(item);
- 
+
+  let context = <HTMLButtonElement>document.querySelector("#relevance")
+  context.style.background = '#E35D6A'
+  context.style.height = '37px'
+  context.style.width = '149px'
+  context.textContent = 'Архив'
+
+  
+  let block = <HTMLDivElement>document.getElementById("#state_block_button")
+  //block.className = 'hiden_block'
+
+  console.log(typeof(block));
+  
+  
+
+
+
+
+// hiden_block
   await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
 }
 

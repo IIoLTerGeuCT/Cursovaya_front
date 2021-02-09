@@ -16,13 +16,13 @@
             </div>
         </div>
         <div class="dropdown ">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="relevance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Актуальность:
             </button>
             <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-              <button class="dropdown-item btn btn-warning" (click)="showStateCurrent()">В работе</button>
-              <button class="dropdown-item btn btn-success" (click)="showStateDone()">Выполнены</button>
-              <button class="dropdown-item btn btn-danger" (click)="showStateArchive()">Архив</button>
+              <button class="dropdown-item btn " (click)="showStateCurrent()">В работе</button>
+              <button class="dropdown-item btn " (click)="showStateDone()">Выполненные</button>
+              <button class="dropdown-item btn " (click)="showStateArchive()">Архив</button>
             </div>
         </div>
     </div>
@@ -131,7 +131,7 @@
                     <th>Дата окончания ремонта</th>
                     <th>Операции</th>
                 </tr>
-                <tr >
+                <tr>
                     <td>{{item.id}}</td>
                     <td>{{item.mark}}</td>
                     <td>{{item.gos_number}}</td>
@@ -140,9 +140,13 @@
                     <td>{{item.EmployeeSurname}} {{item.EmployeeName[0]}}. {{item.EmployeePatronamic[0]}}.</td>
                     <td>{{item.start | date:"medium"}}</td>
                     <td>{{item.finish | date:"medium"}}</td>
-                    <td class="df-btn">
-                        <button id="btnChangeId" class="btn btn-warning rounded-pill " (click)="showUpdateServiceForm(i)">Изменить</button>
-                        <button id="btnRemoveId" class="btn btn-danger rounded-pill "  (click)="removeService(i)">Удалить</button>
+                    <td  class="df-btn">
+                        <div id="state_block_button" class="df-btn">
+                            <button id="btnFinishRequstId" class="btn btn-success rounded-pill " (click)="finishRequest(i)">Завершить</button>
+                            <button id="btnChangeId" class="btn btn-warning rounded-pill " (click)="showUpdateServiceForm(i)">Изменить</button>
+                            <button id="btnRemoveId" class="btn btn-danger rounded-pill "  (click)="removeService(i)">Удалить</button>
+                        </div>
+                        
                     </td>
                 </tr> 
             </table>
