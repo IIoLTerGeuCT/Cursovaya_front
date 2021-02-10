@@ -1,7 +1,5 @@
 .header{
     padding: 4px; 
-
-    /* display: flex; */
     display: flex;
     justify-content: space-around;
 }
@@ -29,10 +27,6 @@
 .btn-secondary, .btn-success{
     background-color: green;
 }
-/* .btn-success{
-    background-color: green;
-} */
-
 
 .df-btn{
     display: flex;
@@ -54,6 +48,7 @@
  }
  .table{
      border-collapse: unset;
+     
  }
  
 
@@ -94,8 +89,8 @@
     min-width: 150px;
 }
 
-.btnDisable{
+/* .btnDisable{
     background-color: lightgray;
     color: red;
     visibility: hidden;
-}
+} */

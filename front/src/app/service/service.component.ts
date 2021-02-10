@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders }   from '@angular/common/http';
 import {Employee, Client, PriceList , Car, Service} from '../app.component'
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Component({
@@ -178,15 +177,15 @@ updateService(){
     client_id: this.client_id,
     employee_id:this.employee_id,
     state:this.query[this.selectedIndex].state,
-    price_list_id: this.query[this.selectedIndex].price_list_id
+    price_list_id: this.query[this.selectedIndex].price_list_id,
+    update:true // true. Состояние изменения всех данных
   }
-  let id = obj.id
 
   //Формирование и отправка данных на сервер
   const myHeader = new HttpHeaders().set('Content-Type','application/json')
-  this.http.post(`http://localhost:3001/api/services/?id=${id}`, obj, {headers:myHeader})
+  this.http.post(`http://localhost:3001/api/services/?id=${obj.id}`, obj, {headers:myHeader})
   .subscribe(res => console.log(res))
- //this.reloadPage()
+  this.reloadPage()
 
 }
 removeService(index:number){
@@ -209,7 +208,7 @@ finishRequest(index:number){
 
   let url = `http://localhost:3001/api/services`
   
-  let body = {"id":indexFinish, "state":2};
+  let body = { "id":indexFinish, "state":2, "update": false }; // 1. Состояние изменения заявки
 
   // Отправляем запрос на изменение состояния заявки
   const myHeader = new HttpHeaders().set('Content-Type','application/json')
@@ -248,25 +247,29 @@ async showStateDone(){
 }
 async showStateArchive(){
 
+  // Решить вопрос автоматической перезагрузки страницы, изза чего все атрибуты и классы обнуляются
+ // await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
+  
   let context = <HTMLButtonElement>document.querySelector("#relevance")
   context.style.background = '#E35D6A'
   context.style.height = '37px'
   context.style.width = '149px'
   context.textContent = 'Архив'
 
+ 
   
-  let block = <HTMLDivElement>document.getElementById("#state_block_button")
-  //block.className = 'hiden_block'
-
-  console.log(typeof(block));
+  // let header = <HTMLTableHeaderCellElement>document.querySelector("#state_block_header")
+  // let body = <HTMLTableDataCellElement>document.querySelector("#state_block_data")
   
-  
+  let header = <HTMLTableRowElement>document.querySelector("#state_block_header")?.lastChild
+  let body = <HTMLTableRowElement>document.querySelector("#state_block_data")?.lastChild
 
+  // header.style.display = "none"
+  // body.style.display ="none"
+  header.className = 'hiden_block'
+  body.className = 'hiden_block'
 
-
-
-// hiden_block
-  await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
+ 
 }
 
 

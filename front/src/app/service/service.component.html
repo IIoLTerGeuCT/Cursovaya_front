@@ -120,7 +120,7 @@
         <div class="card-head" (click)="cardToggle($event)">
             Подробная информация (по клику на компонент):
             <table class="table">
-                <tr>
+                <tr id="state_block_header">
                     <th>id</th>
                     <th>Марка</th>
                     <th>Гос. номер</th>
@@ -131,7 +131,7 @@
                     <th>Дата окончания ремонта</th>
                     <th>Операции</th>
                 </tr>
-                <tr>
+                <tr id="state_block_data">
                     <td>{{item.id}}</td>
                     <td>{{item.mark}}</td>
                     <td>{{item.gos_number}}</td>
@@ -140,8 +140,8 @@
                     <td>{{item.EmployeeSurname}} {{item.EmployeeName[0]}}. {{item.EmployeePatronamic[0]}}.</td>
                     <td>{{item.start | date:"medium"}}</td>
                     <td>{{item.finish | date:"medium"}}</td>
-                    <td  class="df-btn">
-                        <div id="state_block_button" class="df-btn">
+                    <td>
+                        <div  class="df-btn">
                             <button id="btnFinishRequstId" class="btn btn-success rounded-pill " (click)="finishRequest(i)">Завершить</button>
                             <button id="btnChangeId" class="btn btn-warning rounded-pill " (click)="showUpdateServiceForm(i)">Изменить</button>
                             <button id="btnRemoveId" class="btn btn-danger rounded-pill "  (click)="removeService(i)">Удалить</button>
