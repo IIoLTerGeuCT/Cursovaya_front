@@ -256,8 +256,6 @@ async showStateArchive(){
   context.style.width = '149px'
   context.textContent = 'Архив'
 
- 
-  
   // let header = <HTMLTableHeaderCellElement>document.querySelector("#state_block_header")
   // let body = <HTMLTableDataCellElement>document.querySelector("#state_block_data")
   

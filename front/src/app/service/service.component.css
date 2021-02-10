@@ -41,9 +41,11 @@
 
  .visibility_block{
     visibility: visible;
+    display: initial;
  }
  .hiden_block{
      visibility: hidden;
+     display: none;
 
  }
  .table{
