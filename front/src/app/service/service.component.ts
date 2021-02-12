@@ -234,6 +234,8 @@ async showStateCurrent(){
   await this.http.get('http://localhost:3001/api/services?state=1').subscribe((response) => { this.query = response })
 }
 async showStateDone(){
+
+  await this.http.get('http://localhost:3001/api/services?state=2').subscribe((response) => { this.query = response })
   // Поменяем заголовок выбранного блока и настройка для понимая что было выбрано
   let context = <HTMLButtonElement>document.querySelector("#relevance")
   context.style.background = 'green'
@@ -242,13 +244,21 @@ async showStateDone(){
   context.style.width = '149px'
   context.textContent = 'Выполненные'
 
-  await this.http.get('http://localhost:3001/api/services?state=2').subscribe((response) => { this.query = response })
+   //Заберем все строки таблицы заголовка и тело
+  let header = document.querySelectorAll(".state_block_header")
+  let body = document.querySelectorAll(".state_block_data")
+
+  //Сворачиваем элементы
+  hiddenBlock(header)
+  hiddenBlock(body)
+
+  
   
 }
 async showStateArchive(){
 
-  // Решить вопрос автоматической перезагрузки страницы, изза чего все атрибуты и классы обнуляются
- // await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
+  await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
+
   
   let context = <HTMLButtonElement>document.querySelector("#relevance")
   context.style.background = '#E35D6A'
@@ -256,19 +266,18 @@ async showStateArchive(){
   context.style.width = '149px'
   context.textContent = 'Архив'
 
-  // let header = <HTMLTableHeaderCellElement>document.querySelector("#state_block_header")
-  // let body = <HTMLTableDataCellElement>document.querySelector("#state_block_data")
+  //Заберем все строки таблицы заголовка и тело
+  let header = document.querySelectorAll(".state_block_header")
+  let body = document.querySelectorAll(".state_block_data")
+
+  //Сворачиваем элементы
+  hiddenBlock(header)
+  hiddenBlock(body)
+
   
-  let header = <HTMLTableRowElement>document.querySelector("#state_block_header")?.lastChild
-  let body = <HTMLTableRowElement>document.querySelector("#state_block_data")?.lastChild
-
-  // header.style.display = "none"
-  // body.style.display ="none"
-  header.className = 'hiden_block'
-  body.className = 'hiden_block'
-
  
 }
+
 
 
 //#endregion
@@ -298,5 +307,13 @@ async sortByFinishRepairs(){
 cardToggle(event: MouseEvent){
   (event.target as HTMLElement).parentElement?.classList.toggle("card--open")
 }
+
 } // ServiceComponent
+
+function hiddenBlock(arr:NodeListOf<Element>){
+  arr.forEach(el => {
+    el.lastElementChild?.classList.add('hidden_block')     
+  })
+
+}
 

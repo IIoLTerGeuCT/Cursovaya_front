@@ -39,18 +39,13 @@
     min-width: 150px;
  }
 
- .visibility_block{
-    visibility: visible;
-    display: initial;
- }
- .hiden_block{
-     visibility: hidden;
+
+ .hidden_block{
      display: none;
 
  }
  .table{
      border-collapse: unset;
-     
  }
  
 
