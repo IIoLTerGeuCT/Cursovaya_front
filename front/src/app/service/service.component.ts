@@ -16,6 +16,7 @@ export class ServiceComponent implements OnInit {
   // Состояния видимости блоков добавления/изменения данных
   visibleAddNewService:boolean = false
   visibleUpdateService:boolean = false
+  visibleCRUD:boolean = true
 
   // Индекса выбранных элементов
   selectedIndexCar:number = 0
@@ -222,8 +223,9 @@ finishRequest(index:number){
 
 //#region State 
 async showStateCurrent(){
-// 149x37
+  // 149x37
 
+  this.visibleCRUD = true
   let context = <HTMLButtonElement>document.querySelector('#relevance')
   context.style.background = '#FFCD39'
   context.style.color = '#000'
@@ -235,6 +237,7 @@ async showStateCurrent(){
 }
 async showStateDone(){
 
+  this.visibleCRUD = false
   await this.http.get('http://localhost:3001/api/services?state=2').subscribe((response) => { this.query = response })
   // Поменяем заголовок выбранного блока и настройка для понимая что было выбрано
   let context = <HTMLButtonElement>document.querySelector("#relevance")
@@ -244,19 +247,20 @@ async showStateDone(){
   context.style.width = '149px'
   context.textContent = 'Выполненные'
 
-   //Заберем все строки таблицы заголовка и тело
-  let header = document.querySelectorAll(".state_block_header")
-  let body = document.querySelectorAll(".state_block_data")
+  //  //Заберем все строки таблицы заголовка и тело
+  // let header = document.querySelectorAll(".state_block_header")
+  // let body = document.querySelectorAll(".state_block_data")
 
-  //Сворачиваем элементы
-  hiddenBlock(header)
-  hiddenBlock(body)
+  // //Сворачиваем элементы
+  // hiddenBlock(header)
+  // hiddenBlock(body)
 
   
   
 }
 async showStateArchive(){
 
+  this.visibleCRUD = false
   await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
 
   
@@ -266,13 +270,14 @@ async showStateArchive(){
   context.style.width = '149px'
   context.textContent = 'Архив'
 
-  //Заберем все строки таблицы заголовка и тело
-  let header = document.querySelectorAll(".state_block_header")
-  let body = document.querySelectorAll(".state_block_data")
 
-  //Сворачиваем элементы
-  hiddenBlock(header)
-  hiddenBlock(body)
+  // //Заберем все строки таблицы заголовка и тело
+  // let header = document.querySelectorAll(".state_block_header")
+  // let body = document.querySelectorAll(".state_block_data")
+
+  // //Сворачиваем элементы
+  // hiddenBlock(header)
+  // hiddenBlock(body)
 
   
  

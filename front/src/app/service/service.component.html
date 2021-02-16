@@ -129,7 +129,7 @@
                     <th>Данные о сотруднике</th>
                     <th>Дата начала ремонта</th>
                     <th>Дата окончания ремонта</th>
-                    <th>Операции</th>
+                    <th *ngIf="visibleCRUD">Операции</th>
                 </tr>
                 <tr class="state_block_data">
                     <td>{{item.id}}</td>
@@ -140,7 +140,7 @@
                     <td>{{item.EmployeeSurname}} {{item.EmployeeName[0]}}. {{item.EmployeePatronamic[0]}}.</td>
                     <td>{{item.start | date:"medium"}}</td>
                     <td>{{item.finish | date:"medium"}}</td>
-                    <td>
+                    <td *ngIf="visibleCRUD">
                         <div  class="df-btn">
                             <button id="btnFinishRequstId" class="btn btn-success rounded-pill " (click)="finishRequest(i)">Завершить</button>
                             <button id="btnChangeId" class="btn btn-warning rounded-pill " (click)="showUpdateServiceForm(i)">Изменить</button>
