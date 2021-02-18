@@ -130,6 +130,7 @@
                     <th>Дата начала ремонта</th>
                     <th>Дата окончания ремонта</th>
                     <th *ngIf="visibleCRUD">Операции</th>
+                    <th *ngIf="visibleReceipt">Операции</th>
                 </tr>
                 <tr class="state_block_data">
                     <td>{{item.id}}</td>
@@ -146,7 +147,9 @@
                             <button id="btnChangeId" class="btn btn-warning rounded-pill " (click)="showUpdateServiceForm(i)">Изменить</button>
                             <button id="btnRemoveId" class="btn btn-danger rounded-pill "  (click)="removeService(i)">Удалить</button>
                         </div>
-                        
+                    </td>
+                    <td *ngIf="visibleReceipt">
+                        <button id="btnReceipt" class="btn btn-success rounded-pill df-btn" (click)="writeReceipt(i)">Выписать чек</button>
                     </td>
                 </tr> 
             </table>

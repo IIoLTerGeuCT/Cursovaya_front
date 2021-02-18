@@ -16,7 +16,8 @@ export class ServiceComponent implements OnInit {
   // Состояния видимости блоков добавления/изменения данных
   visibleAddNewService:boolean = false
   visibleUpdateService:boolean = false
-  visibleCRUD:boolean = true
+  visibleCRUD:boolean = true // Состояние блока CRUD операций
+  visibleReceipt:boolean = false // Состояние блока выдачи чека
 
   // Индекса выбранных элементов
   selectedIndexCar:number = 0
@@ -126,8 +127,6 @@ restoreAddData(){
   this.visibleUpdateService = false
 }
 
-
-
 async showUpdateServiceForm(index:number){
   this.visibleAddNewService = false
   this.visibleUpdateService = true
@@ -144,8 +143,7 @@ async showUpdateServiceForm(index:number){
   this.ngOnInit()
 
   this.selectedIndex = index
-  
- 
+   
   // Перезаписываем данные для отображения в разметку
   this.date_start_repairs = this.query[index].start
   this.date_finish_repairs = this.query[index].finish
@@ -219,13 +217,17 @@ finishRequest(index:number){
   // Обновляем страницу
   this.reloadPage()
 }
+writeReceipt(index:number){
+
+
+}
 
 
 //#region State 
 async showStateCurrent(){
-  // 149x37
 
   this.visibleCRUD = true
+  this.visibleReceipt = false
   let context = <HTMLButtonElement>document.querySelector('#relevance')
   context.style.background = '#FFCD39'
   context.style.color = '#000'
@@ -238,6 +240,7 @@ async showStateCurrent(){
 async showStateDone(){
 
   this.visibleCRUD = false
+  this.visibleReceipt = true
   await this.http.get('http://localhost:3001/api/services?state=2').subscribe((response) => { this.query = response })
   // Поменяем заголовок выбранного блока и настройка для понимая что было выбрано
   let context = <HTMLButtonElement>document.querySelector("#relevance")
@@ -247,20 +250,11 @@ async showStateDone(){
   context.style.width = '149px'
   context.textContent = 'Выполненные'
 
-  //  //Заберем все строки таблицы заголовка и тело
-  // let header = document.querySelectorAll(".state_block_header")
-  // let body = document.querySelectorAll(".state_block_data")
-
-  // //Сворачиваем элементы
-  // hiddenBlock(header)
-  // hiddenBlock(body)
-
-  
-  
 }
 async showStateArchive(){
 
   this.visibleCRUD = false
+  this.visibleReceipt = false
   await this.http.get('http://localhost:3001/api/services?state=3').subscribe((response) => { this.query = response })
 
   
@@ -270,20 +264,7 @@ async showStateArchive(){
   context.style.width = '149px'
   context.textContent = 'Архив'
 
-
-  // //Заберем все строки таблицы заголовка и тело
-  // let header = document.querySelectorAll(".state_block_header")
-  // let body = document.querySelectorAll(".state_block_data")
-
-  // //Сворачиваем элементы
-  // hiddenBlock(header)
-  // hiddenBlock(body)
-
-  
- 
 }
-
-
 
 //#endregion
 

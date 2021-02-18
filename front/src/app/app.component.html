@@ -6,46 +6,42 @@
     </div>
     
     <div class="container">
-            <aside style="float: left;" class="left-aside-items">
-                <ul class="nav flex-column left-aside">
-                    <li class="nav-item">
-                        <a class="nav-link border-top" routerLink='/service' active data-toggle="tooltip" data-placement="right" title="Авто сервис">
-                            <img src="/assets/Icon/icons8-obsluzhivanie-64.png" alt="">
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link border-top" routerLink='/employees' data-toggle="tooltip" data-placement="right" title="Сотрудники">
-                            <img src="/assets/Icon/Employee.png" alt="">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link border-top" routerLink='/clients' data-toggle="tooltip" data-placement="right" title="Клиенты">
-                            <img src="/assets/Icon/Client.png" alt="">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link border-top" routerLink='/cars' data-toggle="tooltip" data-placement="right" title="Автомобили">
-                            <img src="/assets/Icon/Car.png" alt="">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link border-top" routerLink='/price-list' data-toggle="tooltip" data-placement="right" title="Прайс лист">
-                        <img src="/assets/Icon/PriceList.png" alt="">
+        <aside style="float: left;" class="left-aside-items">
+            <ul class="nav flex-column left-aside">
+                <li class="nav-item">
+                    <a class="nav-link border-top" routerLink='/service' active data-toggle="tooltip" data-placement="right" title="Авто сервис">
+                        <img src="/assets/Icon/icons8-obsluzhivanie-64.png" alt="">
                     </a>
-                    </li>
-                  </ul>
-            </aside>
-            <div class="main-block">
-                <!-- Продумать решение скрытия блока с картинкой -->
-                <!-- <img src="/assets/Image/background.jpg" class="img-max-size" alt=""> -->
-                <router-outlet></router-outlet>
-        </div>
-        
-    </div>
-  
-    
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link border-top" routerLink='/employees' data-toggle="tooltip" data-placement="right" title="Сотрудники">
+                        <img src="/assets/Icon/Employee.png" alt="">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link border-top" routerLink='/clients' data-toggle="tooltip" data-placement="right" title="Клиенты">
+                        <img src="/assets/Icon/Client.png" alt="">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link border-top" routerLink='/cars' data-toggle="tooltip" data-placement="right" title="Автомобили">
+                        <img src="/assets/Icon/Car.png" alt="">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link border-top" routerLink='/price-list' data-toggle="tooltip" data-placement="right" title="Прайс лист">
+                    <img src="/assets/Icon/PriceList.png" alt="">
+                </a>
+                </li>
+                </ul>
+        </aside>
+        <div  class="main-block">
+            <!-- Продумать решение скрытия блока с картинкой -->
+            <!-- <img src="/assets/Image/background.jpg" class="img-max-size" alt=""> -->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
 
 
