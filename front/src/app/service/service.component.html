@@ -139,8 +139,8 @@
                     <td>{{item.type}}</td>
                     <td>{{item.clientSurname}} {{item.clientName[0]}}. {{item.clientPatronamic[0]}}.</td>
                     <td>{{item.EmployeeSurname}} {{item.EmployeeName[0]}}. {{item.EmployeePatronamic[0]}}.</td>
-                    <td>{{item.start | date:"medium"}}</td>
-                    <td>{{item.finish | date:"medium"}}</td>
+                    <td>{{item.start | date:'longDate'}}</td>
+                    <td>{{item.finish | date:'longDate'}}</td>
                     <td *ngIf="visibleCRUD">
                         <div  class="df-btn">
                             <button id="btnFinishRequstId" class="btn btn-success rounded-pill " (click)="finishRequest(i)">Завершить</button>

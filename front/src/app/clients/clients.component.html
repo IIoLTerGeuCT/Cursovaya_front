@@ -65,7 +65,7 @@
             <td>{{item.patronamic}}</td>
             <td>{{item.pass_id}}</td>
             <td>{{item.habitation}}</td>
-            <td>{{item.date_born}}</td>
+            <td>{{item.date_born | date:'longDate'}}</td>
             <td><button class="btn btn-warning rounded-pill" (click)="showUpdateClientForm(i)">Изменить</button>
                 <button class="btn btn-danger rounded-pill"  (click)="removeClient(i)">Удалить</button></td>
         </tr>
