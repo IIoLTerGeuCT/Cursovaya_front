@@ -1,172 +1,288 @@
 <div class="container">
-    <div class="header">
-        <h5>Данные о предоставленных услугах:</h5>
-        <button class="btn btn-success rounded-pill" (click)="showAddNewServiceForm()">Создать заявку</button>
-        <div class="dropdown ">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Сортировка:
-            </button>
-            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-              <button class="dropdown-item" (click)="sortById()">По id</button>
-              <button class="dropdown-item" (click)="sortByMarkCar()">По марке авто</button>
-              <button class="dropdown-item" (click)="sortBySurnameClient()">По фамилии клиента</button>
-              <button class="dropdown-item" (click)="sortBySurnameEmployee()">По фамилии сотрудника</button>
-              <button class="dropdown-item" (click)="sortByStartRepairs()">По дате начала ремонта</button>
-              <button class="dropdown-item" (click)="sortByFinishRepairs()">По дате окончания ремонта</button>
-            </div>
-        </div>
-        <div class="dropdown ">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="relevance" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Актуальность:
-            </button>
-            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-              <button class="dropdown-item btn " (click)="showStateCurrent()">В работе</button>
-              <button class="dropdown-item btn " (click)="showStateDone()">Выполненные</button>
-              <button class="dropdown-item btn " (click)="showStateArchive()">Архив</button>
-            </div>
-        </div>
+  <div class="header">
+    <h5>Данные о предоставленных услугах:</h5>
+    <button
+      class="btn btn-success rounded-pill"
+      (click)="showAddNewServiceForm()"
+    >
+      Создать заявку
+    </button>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Сортировка:
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button class="dropdown-item" (click)="sortById()">По id</button>
+        <button class="dropdown-item" (click)="sortByMarkCar()">
+          По марке авто
+        </button>
+        <button class="dropdown-item" (click)="sortBySurnameClient()">
+          По фамилии клиента
+        </button>
+        <button class="dropdown-item" (click)="sortBySurnameEmployee()">
+          По фамилии сотрудника
+        </button>
+        <button class="dropdown-item" (click)="sortByStartRepairs()">
+          По дате начала ремонта
+        </button>
+        <button class="dropdown-item" (click)="sortByFinishRepairs()">
+          По дате окончания ремонта
+        </button>
+      </div>
     </div>
-    <div class="addForm">
-        <div class="enter-data" *ngIf="visibleAddNewService">
-            <div class="df">
-                <label for="selectCar">Выберите авто:</label>
-                <select [(ngModel)]="selectedCarModel"  >
-                    <optgroup label = "Данные об авто:" ></optgroup>
-                 <option *ngFor="let c of cars" [value]="c.id">{{c.id}}:  {{c.mark}} | {{c.gos_number}} | {{c.color}}</option>
-                </select>
-            </div>
-            <div class="df">
-                <label for="selectClient">Выберите клиента:</label>
-                <select [(ngModel)]="selectedClientModel">
-                    <optgroup label = "Данные о клиенте:"></optgroup>
-                    <option *ngFor="let c of clients" [value]="c.id">{{c.id}}: {{c.surname}} {{c.name[0]}}. {{c.patronamic[0]}}. {{c.habitation}}
-                    </option>
-                </select>
-            </div>
-            <div class="df">
-                <label for="selectEmployee">Выберите сотрудника:</label>
-                <select [(ngModel)]="selectedEmployeeModel">
-                    <optgroup label = "Данные о сотруднике:"></optgroup>
-                    <option *ngFor="let e of employees" [value]="e.id">{{e.id}}: {{e.surname}} {{e.name[0]}}.{{e.patronamic[0]}}. {{e.specialization}}</option>
-                </select>
-            </div>
-             <label for="date_start_repairs" >Дата начала ремонта:
-                 <input type="date" class="inputDateStart" name="date_start_repairs" [(ngModel)]='date_start_repairs' (value)="date_start_repairs">
-             </label>
-             <label for="date_finish_repairs" >Дата окончания ремонта:
-                 <input type="date" class="inputDateFinish"  name="date_finish_repairs" [(ngModel)]='date_finish_repairs' (value)="date_finish_repairs">
-             </label>
-             <div  style="display:flex; flex-direction: column;">
-                 <label for="">Список услуг:</label>
-                 <select [(ngModel)]="selectedPriceListModel" multiple size="10">
-                    <option *ngFor="let p of price_lists" [value]="p.id">{{p.id}}: {{p.type}}</option>
-                </select>
-             </div>
-           
-            <div class="btnAddRestore">
-                <button class="btn btn-success rounded-pill" (click)="addNewService()">Добавить</button>
-                <button class="btn btn-danger rounded-pill" (click)="restoreAddData()">Отмена</button>
-            </div>
-            
-         </div>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="relevance"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Актуальность:
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button class="dropdown-item btn" (click)="showStateCurrent()">
+          В работе
+        </button>
+        <button class="dropdown-item btn" (click)="showStateDone()">
+          Выполненные
+        </button>
+        <button class="dropdown-item btn" (click)="showStateArchive()">
+          Архив
+        </button>
+      </div>
     </div>
-    <div class="addForm">
-        <div class="enter-data" *ngIf="visibleUpdateService">
-            <div class="df">
-                <label for="selectCar">Выберите авто:</label>
-                <select [(ngModel)]="selectedCarModel"  >
-                    <optgroup label = "Данные об авто:" ></optgroup>
-                 <option *ngFor="let c of cars" [value]="c.id">{{c.id}}:  {{c.mark}} | {{c.gos_number}} | {{c.color}}</option>
-                </select>
-            </div>
-            <div class="df">
-                <label for="selectClient">Выберите клиента:</label>
-                <select [(ngModel)]="selectedClientModel">
-                    <optgroup label = "Данные о клиенте:"></optgroup>
-                    <option *ngFor="let c of clients" [value]="c.id">{{c.id}}: {{c.surname}} {{c.name[0]}}. {{c.patronamic[0]}}. {{c.habitation}}
-                    </option>
-                </select>
-            </div>
-            <div class="df">
-                <label for="selectEmployee">Выберите сотрудника:</label>
-                <select [(ngModel)]="selectedEmployeeModel">
-                    <optgroup label = "Данные о сотруднике:"></optgroup>
-                    <option *ngFor="let e of employees" [value]="e.id">{{e.id}}: {{e.surname}} {{e.name[0]}}.{{e.patronamic[0]}}. {{e.specialization}}</option>
-                </select>
-            </div>
-             <label for="date_start_repairs" >Дата начала ремонта:
-                 <input type="date" class="inputDateStart" name="date_start_repairs" [(ngModel)]='date_start_repairs' (value)="date_start_repairs">
-             </label>
-             <label for="date_finish_repairs" >Дата окончания ремонта:
-                 <input type="date" class="inputDateFinish"  name="date_finish_repairs" [(ngModel)]='date_finish_repairs' (value)="date_finish_repairs">
-             </label>
-             <div  style="display:flex; flex-direction: column;">
-                 <label for="">Список услуг:</label>
-                 <select [(ngModel)]="selectedPriceListModel" multiple size="10">
-                    <option *ngFor="let p of price_lists" [value]="p.id">{{p.id}}: {{p.type}}</option>
-                </select>
-             </div>
-           
-            <div class="btnAddRestore">
-                <button class="btn btn-success rounded-pill" (click)="updateService()">Изменить</button>
-                <button class="btn btn-danger rounded-pill" (click)="restoreAddData()">Отмена</button>
-            </div>
-            
-         </div>
-    </div>
-    
+  </div>
+  <div class="addForm">
+    <div class="enter-data" *ngIf="visibleAddNewService">
+      <div class="df">
+        <label for="selectCar">Выберите авто:</label>
+        <select [(ngModel)]="selectedCarModel">
+          <optgroup label="Данные об авто:"></optgroup>
+          <option *ngFor="let c of cars" [value]="c.id">
+            {{ c.id }}: {{ c.mark }} | {{ c.gos_number }} | {{ c.color }}
+          </option>
+        </select>
+      </div>
+      <div class="df">
+        <label for="selectClient">Выберите клиента:</label>
+        <select [(ngModel)]="selectedClientModel">
+          <optgroup label="Данные о клиенте:"></optgroup>
+          <option *ngFor="let c of clients" [value]="c.id">
+            {{ c.id }}: {{ c.surname }} {{ c.name[0] }}. {{ c.patronamic[0] }}.
+            {{ c.habitation }}
+          </option>
+        </select>
+      </div>
+      <div class="df">
+        <label for="selectEmployee">Выберите сотрудника:</label>
+        <select [(ngModel)]="selectedEmployeeModel">
+          <optgroup label="Данные о сотруднике:"></optgroup>
+          <option *ngFor="let e of employees" [value]="e.id">
+            {{ e.id }}: {{ e.surname }} {{ e.name[0] }}.{{ e.patronamic[0] }}.
+            {{ e.specialization }}
+          </option>
+        </select>
+      </div>
+      <label for="date_start_repairs"
+        >Дата начала ремонта:
+        <input
+          type="date"
+          class="inputDateStart"
+          name="date_start_repairs"
+          [(ngModel)]="date_start_repairs"
+          (value)="(date_start_repairs)"
+        />
+      </label>
+      <label for="date_finish_repairs"
+        >Дата окончания ремонта:
+        <input
+          type="date"
+          class="inputDateFinish"
+          name="date_finish_repairs"
+          [(ngModel)]="date_finish_repairs"
+          (value)="(date_finish_repairs)"
+        />
+      </label>
+      <div style="display: flex; flex-direction: column">
+        <label for="">Список услуг:</label>
+        <select [(ngModel)]="selectedPriceListModel" multiple size="10">
+          <option *ngFor="let p of price_lists" [value]="p.id">
+            {{ p.id }}: {{ p.type }}
+          </option>
+        </select>
+      </div>
 
-    <div  class="card " *ngFor="let item of query; index as i">
-        <div class="card-head" (click)="cardToggle($event)">
-            Подробная информация (по клику на компонент):
-            <table class="table">
-                <tr class="state_block_header">
-                    <th>id</th>
-                    <th>Марка</th>
-                    <th>Гос. номер</th>
-                    <th>Право владения</th>
-                    <th>Данные о клиента</th>
-                    <th>Данные о сотруднике</th>
-                    <th>Дата начала ремонта</th>
-                    <th>Дата окончания ремонта</th>
-                    <th *ngIf="visibleCRUD">Операции</th>
-                    <th *ngIf="visibleReceipt">Операции</th>
-                </tr>
-                <tr class="state_block_data">
-                    <td>{{item.id}}</td>
-                    <td>{{item.mark}}</td>
-                    <td>{{item.gos_number}}</td>
-                    <td>{{item.type}}</td>
-                    <td>{{item.clientSurname}} {{item.clientName[0]}}. {{item.clientPatronamic[0]}}.</td>
-                    <td>{{item.EmployeeSurname}} {{item.EmployeeName[0]}}. {{item.EmployeePatronamic[0]}}.</td>
-                    <td>{{item.start | date:'longDate'}}</td>
-                    <td>{{item.finish | date:'longDate'}}</td>
-                    <td *ngIf="visibleCRUD">
-                        <div  class="df-btn">
-                            <button id="btnFinishRequstId" class="btn btn-success rounded-pill " (click)="finishRequest(i)">Завершить</button>
-                            <button id="btnChangeId" class="btn btn-warning rounded-pill " (click)="showUpdateServiceForm(i)">Изменить</button>
-                            <button id="btnRemoveId" class="btn btn-danger rounded-pill "  (click)="removeService(i)">Удалить</button>
-                        </div>
-                    </td>
-                    <td *ngIf="visibleReceipt">
-                        <button id="btnReceipt" class="btn btn-success rounded-pill df-btn" (click)="writeReceipt(i)">Выписать чек</button>
-                    </td>
-                </tr> 
-            </table>
-        </div>
-        <div class="card-body">
-            <table class="table">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Услуга</th>
-                    <th scope="col">Цена руб.</th>
-                </tr>
-                <tr *ngFor="let pl of showPriceListInServiceTable(i)">
-                    <td >{{pl.id}}</td>
-                    <td >{{pl.type}}</td>
-                    <td >{{pl.price}}</td>
-                </tr>
-            </table>
-        </div>
+      <div class="btnAddRestore">
+        <button class="btn btn-success rounded-pill" (click)="addNewService()">
+          Добавить
+        </button>
+        <button class="btn btn-danger rounded-pill" (click)="restoreAddData()">
+          Отмена
+        </button>
+      </div>
     </div>
+  </div>
+  <div class="addForm">
+    <div class="enter-data" *ngIf="visibleUpdateService">
+      <div class="df">
+        <label for="selectCar">Выберите авто:</label>
+        <select [(ngModel)]="selectedCarModel">
+          <optgroup label="Данные об авто:"></optgroup>
+          <option *ngFor="let c of cars" [value]="c.id">
+            {{ c.id }}: {{ c.mark }} | {{ c.gos_number }} | {{ c.color }}
+          </option>
+        </select>
+      </div>
+      <div class="df">
+        <label for="selectClient">Выберите клиента:</label>
+        <select [(ngModel)]="selectedClientModel">
+          <optgroup label="Данные о клиенте:"></optgroup>
+          <option *ngFor="let c of clients" [value]="c.id">
+            {{ c.id }}: {{ c.surname }} {{ c.name[0] }}. {{ c.patronamic[0] }}.
+            {{ c.habitation }}
+          </option>
+        </select>
+      </div>
+      <div class="df">
+        <label for="selectEmployee">Выберите сотрудника:</label>
+        <select [(ngModel)]="selectedEmployeeModel">
+          <optgroup label="Данные о сотруднике:"></optgroup>
+          <option *ngFor="let e of employees" [value]="e.id">
+            {{ e.id }}: {{ e.surname }} {{ e.name[0] }}.{{ e.patronamic[0] }}.
+            {{ e.specialization }}
+          </option>
+        </select>
+      </div>
+      <label for="date_start_repairs"
+        >Дата начала ремонта:
+        <input
+          type="date"
+          class="inputDateStart"
+          name="date_start_repairs"
+          [(ngModel)]="date_start_repairs"
+          (value)="(date_start_repairs)"
+        />
+      </label>
+      <label for="date_finish_repairs"
+        >Дата окончания ремонта:
+        <input
+          type="date"
+          class="inputDateFinish"
+          name="date_finish_repairs"
+          [(ngModel)]="date_finish_repairs"
+          (value)="(date_finish_repairs)"
+        />
+      </label>
+      <div style="display: flex; flex-direction: column">
+        <label for="">Список услуг:</label>
+        <select [(ngModel)]="selectedPriceListModel" multiple size="10">
+          <option *ngFor="let p of price_lists" [value]="p.id">
+            {{ p.id }}: {{ p.type }}
+          </option>
+        </select>
+      </div>
+
+      <div class="btnAddRestore">
+        <button class="btn btn-success rounded-pill" (click)="updateService()">
+          Изменить
+        </button>
+        <button class="btn btn-danger rounded-pill" (click)="restoreAddData()">
+          Отмена
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" *ngFor="let item of query; index as i">
+    <div class="card-head" (click)="cardToggle($event)">
+      Подробная информация (по клику на компонент):
+      <table class="table">
+        <tr class="state_block_header">
+          <th>id</th>
+          <th>Марка</th>
+          <th>Гос. номер</th>
+          <th>Право владения</th>
+          <th>Данные о клиента</th>
+          <th>Данные о сотруднике</th>
+          <th>Дата начала ремонта</th>
+          <th>Дата окончания ремонта</th>
+          <th *ngIf="visibleCRUD">Операции</th>
+          <th *ngIf="visibleReceipt">Операции</th>
+        </tr>
+        <tr class="state_block_data">
+          <td>{{ item.id }}</td>
+          <td>{{ item.mark }}</td>
+          <td>{{ item.gos_number }}</td>
+          <td>{{ item.type }}</td>
+          <td>
+            {{ item.clientSurname }} {{ item.clientName[0] }}.
+            {{ item.clientPatronamic[0] }}.
+          </td>
+          <td>
+            {{ item.EmployeeSurname }} {{ item.EmployeeName[0] }}.
+            {{ item.EmployeePatronamic[0] }}.
+          </td>
+          <td>{{ item.start | date: "longDate" }}</td>
+          <td>{{ item.finish | date: "longDate" }}</td>
+          <td *ngIf="visibleCRUD">
+            <div class="df-btn">
+              <button
+                id="btnFinishRequstId"
+                class="btn btn-success rounded-pill"
+                (click)="finishRequest(i)"
+              >
+                Завершить
+              </button>
+              <button
+                id="btnChangeId"
+                class="btn btn-warning rounded-pill"
+                (click)="showUpdateServiceForm(i)"
+              >
+                Изменить
+              </button>
+              <button
+                id="btnRemoveId"
+                class="btn btn-danger rounded-pill"
+                (click)="removeService(i)"
+              >
+                Удалить
+              </button>
+            </div>
+          </td>
+          <td *ngIf="visibleReceipt">
+            <button
+              id="btnReceipt"
+              class="btn btn-success rounded-pill df-btn"
+              (click)="writeReceipt(i)"
+            >
+              Выписать чек
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Услуга</th>
+          <th scope="col">Цена руб.</th>
+        </tr>
+        <tr *ngFor="let pl of showPriceListInServiceTable(i)">
+          <td>{{ pl.id }}</td>
+          <td>{{ pl.type }}</td>
+          <td>{{ pl.price }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
